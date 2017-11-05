@@ -23,7 +23,6 @@ public class FileChannelDemo_1 {
 
         FileChannel channel = randomAccessFile.getChannel();
 
-
         ByteBuffer dest = ByteBuffer.allocate(1024);
 
         int read = channel.read(dest);

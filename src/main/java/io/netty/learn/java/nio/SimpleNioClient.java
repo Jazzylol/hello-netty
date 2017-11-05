@@ -6,4 +6,6 @@ package io.netty.learn.java.nio;
  * Description:
  */
 public class SimpleNioClient {
+    public static void main(String[] args) {
+    }
 }
