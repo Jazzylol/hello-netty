@@ -19,6 +19,9 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("server,String type:" + (msg instanceof String));
         System.out.println("server,ByteBuf type:" + (msg instanceof ByteBuf));
         System.out.println("server msg:" + msg);
+
+        String result = "hello Im server msg is 李四";
+        ctx.channel().writeAndFlush(result);
     }
 
 
