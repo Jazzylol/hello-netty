@@ -11,9 +11,10 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.learn.netty.demo.handler.ServerHandler;
+import io.netty.learn.netty.demo.handler.ServerHandlerWithException;
 
 
-public class SimpleNettyServer {
+public class SimpleNettyServerWithException {
 
     public static void main(String[] args) throws Exception {
         init();
@@ -33,7 +34,7 @@ public class SimpleNettyServer {
 
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(new StringDecoder());
-                            ch.pipeline().addLast(new ServerHandler());
+                            ch.pipeline().addLast(new ServerHandlerWithException());
                             ch.pipeline().addLast(new StringEncoder());
                         }
                     });

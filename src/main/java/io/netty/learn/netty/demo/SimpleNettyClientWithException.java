@@ -2,8 +2,6 @@ package io.netty.learn.netty.demo;
 
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -13,15 +11,14 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.learn.netty.demo.handler.ClientHandler;
-
-import java.nio.charset.Charset;
+import io.netty.learn.netty.demo.handler.ClientHandlerWithException;
 
 /**
  * create by Jazzylol at  2017/9/10
  * <p>
  * Description:
  */
-public class SimpleNettyClient {
+public class SimpleNettyClientWithException {
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -46,7 +43,7 @@ public class SimpleNettyClient {
 
                 protected void initChannel(NioSocketChannel ch) throws Exception {
                     ch.pipeline().addLast(new StringDecoder());
-                    ch.pipeline().addLast(new ClientHandler());
+                    ch.pipeline().addLast(new ClientHandlerWithException());
                     ch.pipeline().addLast(new StringEncoder());
                 }
             });
