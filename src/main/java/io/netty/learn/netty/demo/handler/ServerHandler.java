@@ -5,6 +5,8 @@ import io.netty.buffer.UnpooledHeapByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.nio.charset.Charset;
+
 public class ServerHandler extends ChannelInboundHandlerAdapter {
 
 
@@ -20,7 +22,17 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("server,ByteBuf type:" + (msg instanceof ByteBuf));
         System.out.println("server msg:" + msg);
 
-        String result = "hello Im server msg is 李四";
+        if (msg instanceof ByteBuf) {
+
+            ByteBuf data = (ByteBuf) msg;
+
+            System.out.println(data.toString(Charset.defaultCharset()));
+
+        }
+
+
+        String result = "hello Im server msg is 李四\r\n";
+        System.out.println("begin to send msg to client msg is :" + result);
         ctx.channel().writeAndFlush(result);
     }
 

@@ -8,6 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.learn.netty.demo.handler.ServerHandler;
@@ -32,9 +34,14 @@ public class SimpleNettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
 
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new StringDecoder());
+
+
+                            ch.pipeline().addLast(new DelimiterBasedFrameDecoder(Integer.MAX_VALUE, Delimiters.lineDelimiter()[0]));
                             ch.pipeline().addLast(new ServerHandler());
                             ch.pipeline().addLast(new StringEncoder());
+//                            ch.pipeline().addLast(new StringDecoder());
+//                            ch.pipeline().addLast(new ServerHandler());
+//                            ch.pipeline().addLast(new StringEncoder());
                         }
                     });
 
